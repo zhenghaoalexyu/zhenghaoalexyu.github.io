@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zhenghao Yu</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0d0d0d;
+            color: #ffffff;
+        }
+
+        a {
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: white;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 60px;
+            margin: 0;
+        }
+
+        .subtitle {
+            color: #888;
+            margin-top: 10px;
+        }
+
+        /* SECTION */
+        .section {
+            margin-top: 100px;
+        }
+
+        h2 {
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        /* PROJECTS */
+        .project {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #222;
+            transition: 0.3s;
+        }
+
+        .project:hover {
+            background: #1a1a1a;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            margin: 100px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Zhenghao Yu</h1>
+        <p class="subtitle">Economics & Statistics Student</p>
+        <p>
+            <a href="#about">About</a> /
+            <a href="#projects">Projects</a> /
+            <a href="#contact">Contact</a>
+        </p>
+    </div>
+
+    <!-- ABOUT -->
+    <div id="about" class="section">
+        <h2>About</h2>
+        <p>
+            I am interested in economics, data science, and AI.
+            Currently studying AP courses and exploring quantitative analysis.
+        </p>
+    </div>
+
+    <!-- PROJECTS -->
+    <div id="projects" class="section">
+        <h2>Projects</h2>
+
+        <div class="project">
+            <h3>AP Economics Notes</h3>
+            <p>Comprehensive notes covering microeconomics concepts.</p>
+        </div>
+
+        <div class="project">
+            <h3>Data Analysis Project</h3>
+            <p>Analyzing trends using Python and statistics.</p>
+        </div>
+
+    </div>
+
+    <!-- CONTACT -->
+    <div id="contact" class="section">
+        <h2>Contact</h2>
+        <p>Email: your@email.com</p>
+    </div>
+
+    <footer>
+        © 2026 Zhenghao Yu
+    </footer>
+
+</div>
+
+</body>
+</html>
