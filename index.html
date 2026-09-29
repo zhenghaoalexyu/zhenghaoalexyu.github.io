@@ -39,6 +39,8 @@
 .profile-layout{display:grid;grid-template-columns:minmax(205px,245px) minmax(0,1fr);gap:clamp(42px,5vw,72px);align-items:start}
 .profile-panel{position:sticky;top:104px;min-width:0;padding:64px 0 48px;max-height:calc(100svh - 104px);overflow:auto;scrollbar-width:thin}
 .profile-kicker{display:flex;align-items:center;gap:10px;color:var(--green);margin-bottom:23px}
+.profile-photo{width:min(100%,190px);aspect-ratio:4/5;margin:0 0 28px;overflow:hidden;border:1px solid var(--line);border-radius:2px;background:var(--tint)}
+.profile-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 .profile-name{font-family:var(--serif);font-size:clamp(43px,4vw,54px);line-height:1;letter-spacing:-2.2px}
 .profile-name span{display:block}.profile-name .name-dot{display:inline}
 .profile-tagline{margin-top:22px;font-family:var(--serif);font-size:21px;line-height:1.35;letter-spacing:-.25px}
@@ -99,9 +101,9 @@
 .note-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .note-action{display:inline-flex;align-items:center;gap:12px;min-height:39px;padding:9px 12px;border:1px solid #cfd6d0;background:#fff;font:10px/1.4 var(--mono);letter-spacing:.35px;text-transform:uppercase}
 .note-action:hover{border-color:var(--green);color:var(--green)}
-@media(max-width:960px){.profile-layout{grid-template-columns:205px minmax(0,1fr);gap:34px}.profile-panel{top:98px}.detail-column{padding-left:30px}.profile-name{font-size:43px}.profile-tagline{font-size:19px}.profile-nav ul{grid-template-columns:1fr}.detail-column .beyond-items,.academic-grid{grid-template-columns:1fr}}
-@media(max-width:760px){.profile-layout{display:block}.profile-panel{position:static;max-height:none;overflow:visible;padding:55px 0 42px;border-bottom:1px solid var(--line)}.profile-name{font-size:clamp(55px,14vw,82px)}.profile-name span{display:inline}.profile-tagline{max-width:520px;font-size:25px}.profile-description{max-width:540px}.profile-meta{max-width:540px}.profile-links{max-width:540px}.profile-nav{display:none}.detail-column{border-left:0;padding-left:0}.detail-column .section:first-child{padding-top:53px}.detail-column .section{padding-block:53px}.detail-column .contact{padding-block:53px 45px}.detail-column .contact h2{font-size:42px}.note-card{grid-template-columns:1fr}.note-actions{justify-content:flex-start}}
-@media print{.profile-layout{display:grid;grid-template-columns:190px 1fr;gap:30px}.profile-panel{position:static;max-height:none;overflow:visible;padding:22px 0}.profile-nav{display:none}.detail-column{padding-left:25px}.detail-column .section:first-child,.detail-column .section,.detail-column .contact{padding-block:22px}}
+@media(max-width:960px){.profile-layout{grid-template-columns:205px minmax(0,1fr);gap:34px}.profile-panel{top:98px}.profile-photo{width:172px}.detail-column{padding-left:30px}.profile-name{font-size:43px}.profile-tagline{font-size:19px}.profile-nav ul{grid-template-columns:1fr}.detail-column .beyond-items,.academic-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.profile-layout{display:block}.profile-panel{position:static;max-height:none;overflow:visible;padding:55px 0 42px;border-bottom:1px solid var(--line)}.profile-photo{width:160px;margin-bottom:25px}.profile-name{font-size:clamp(55px,14vw,82px)}.profile-name span{display:inline}.profile-tagline{max-width:520px;font-size:25px}.profile-description{max-width:540px}.profile-meta{max-width:540px}.profile-links{max-width:540px}.profile-nav{display:none}.detail-column{border-left:0;padding-left:0}.detail-column .section:first-child{padding-top:53px}.detail-column .section{padding-block:53px}.detail-column .contact{padding-block:53px 45px}.detail-column .contact h2{font-size:42px}.note-card{grid-template-columns:1fr}.note-actions{justify-content:flex-start}}
+@media print{.profile-layout{display:grid;grid-template-columns:190px 1fr;gap:30px}.profile-panel{position:static;max-height:none;overflow:visible;padding:22px 0}.profile-photo{width:115px;margin-bottom:15px}.profile-nav{display:none}.detail-column{padding-left:25px}.detail-column .section:first-child,.detail-column .section,.detail-column .contact{padding-block:22px}}
 </style>
 </head>
 <body>
@@ -115,6 +117,7 @@
 <main id="main"><div class="wrap profile-layout" id="top">
 <aside class="profile-panel" aria-labelledby="profile-name">
 <p class="eyebrow profile-kicker"><span class="status-dot" aria-hidden="true"></span><span data-i18n="heroKicker">HKUST undergraduate · Year 1</span></p>
+<figure class="profile-photo"><img src="profile-photo.png" alt="Portrait of Zhenghao Yu" width="941" height="1672" decoding="async" fetchpriority="high"></figure>
 <h1 class="profile-name" id="profile-name"><span>Zhenghao</span> <span>Yu<span class="name-dot">.</span></span></h1>
 <p class="profile-tagline" data-i18n="heroTagline">Economics is my love.</p>
 <p class="profile-description" data-i18n="heroDescription">A first-year student at HKUST's School of Business and Management, with interests in mathematics and economics.</p>
