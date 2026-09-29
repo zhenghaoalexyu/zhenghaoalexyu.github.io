@@ -40,16 +40,20 @@
 .profile-layout{display:grid;grid-template-columns:minmax(205px,245px) minmax(0,1fr);gap:clamp(42px,5vw,72px);align-items:start}
 .profile-panel{position:sticky;top:32px;min-width:0;padding:50px 0 48px;max-height:calc(100svh - 32px);overflow:auto;scrollbar-width:thin}
 .profile-kicker{display:flex;align-items:center;gap:10px;color:var(--green);margin-bottom:23px}
-.profile-photo{width:min(100%,190px);aspect-ratio:1;margin:0 0 28px;overflow:hidden;border:1px solid var(--line);border-radius:50%;background:var(--tint);box-shadow:0 0 0 6px #fff,0 0 0 7px var(--line)}
-.profile-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 38%}
-.profile-name{font-family:var(--sans);font-size:clamp(28px,2.4vw,34px);font-weight:700;line-height:1.18;letter-spacing:-1px}
+.profile-photo{width:min(100%,190px);aspect-ratio:4/5;margin:0 0 29px;overflow:hidden;border:1px solid var(--line);border-radius:3px;background:var(--tint);box-shadow:0 14px 35px rgba(35,55,37,.08)}
+.profile-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.profile-name{font-family:var(--serif);font-size:clamp(42px,3.6vw,51px);font-weight:400;line-height:.96;letter-spacing:-2.1px}
+.profile-name span{display:block}
+.profile-intro{max-width:215px;margin-top:20px;color:var(--muted);font-size:12.5px;line-height:1.75}
 .profile-tagline{margin-top:22px;font-family:var(--serif);font-size:21px;line-height:1.35;letter-spacing:-.25px}
 .profile-description{margin-top:16px;color:var(--muted);font-size:13px;line-height:1.8}
-.profile-details{display:grid;gap:17px;margin:29px 0 0;padding:0;list-style:none}
-.profile-details li{display:grid;grid-template-columns:22px minmax(0,1fr);align-items:center;gap:12px;color:var(--muted);font-size:14px;line-height:1.5}
-.profile-details svg{width:20px;height:20px;color:#4f5652}
-.profile-details a{color:var(--ink);overflow-wrap:anywhere}
-.profile-details a:hover{text-decoration:underline;text-underline-offset:4px}
+.profile-facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:25px}
+.fact-card{position:relative;display:flex;min-width:0;min-height:66px;padding:12px 11px;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:2px;background:#fff;transition:border-color .2s,background .2s}
+.fact-card::before{content:"";position:absolute;top:-1px;left:11px;width:20px;height:1px;background:var(--green)}
+.fact-label{font:8px/1.4 var(--mono);letter-spacing:.8px;text-transform:uppercase;color:#788078}
+.fact-value{margin-top:8px;font-size:11.5px;line-height:1.35;color:var(--ink);overflow-wrap:anywhere}
+a.fact-card:hover{border-color:#9aa790;background:var(--tint)}
+a.fact-card .fact-value::after{content:" ↗";color:var(--green)}
 .profile-nav{margin-top:21px;padding-top:19px;border-top:1px solid var(--line)}
 .profile-nav ul{display:grid;grid-template-columns:1fr 1fr;gap:4px 15px;margin:0;padding:0;list-style:none}
 .profile-nav a{display:flex;align-items:center;min-height:31px;font:10px/1.5 var(--mono);letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
@@ -100,8 +104,8 @@
 .note-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .note-action{display:inline-flex;align-items:center;gap:12px;min-height:39px;padding:9px 12px;border:1px solid #cfd6d0;background:#fff;font:10px/1.4 var(--mono);letter-spacing:.35px;text-transform:uppercase}
 .note-action:hover{border-color:var(--green);color:var(--green)}
-@media(max-width:960px){.profile-layout{grid-template-columns:205px minmax(0,1fr);gap:34px}.profile-panel{top:24px}.profile-photo{width:172px}.detail-column{padding-left:30px}.profile-name{font-size:29px}.detail-column .beyond-items,.academic-grid{grid-template-columns:1fr}}
-@media(max-width:760px){.profile-layout{display:block}.profile-panel{position:static;max-height:none;overflow:visible;padding:45px 0 38px;border-bottom:1px solid var(--line)}.profile-photo{width:150px;margin-bottom:25px}.profile-name{font-size:32px}.profile-details{max-width:540px}.detail-column{border-left:0;padding-left:0}.detail-column .section:first-child{padding-top:53px}.detail-column .section{padding-block:53px}.detail-column .contact{padding-block:53px 45px}.detail-column .contact h2{font-size:42px}.note-card{grid-template-columns:1fr}.note-actions{justify-content:flex-start}}
+@media(max-width:960px){.profile-layout{grid-template-columns:205px minmax(0,1fr);gap:34px}.profile-panel{top:24px}.profile-photo{width:172px}.detail-column{padding-left:30px}.profile-name{font-size:43px}.detail-column .beyond-items,.academic-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.profile-layout{display:block}.profile-panel{position:static;max-height:none;overflow:visible;padding:45px 0 38px;border-bottom:1px solid var(--line)}.profile-photo{width:160px;margin-bottom:25px}.profile-name{font-size:48px}.profile-intro{max-width:360px}.profile-facts{max-width:360px}.detail-column{border-left:0;padding-left:0}.detail-column .section:first-child{padding-top:53px}.detail-column .section{padding-block:53px}.detail-column .contact{padding-block:53px 45px}.detail-column .contact h2{font-size:42px}.note-card{grid-template-columns:1fr}.note-actions{justify-content:flex-start}}
 @media print{.profile-layout{display:grid;grid-template-columns:190px 1fr;gap:30px}.profile-panel{position:static;max-height:none;overflow:visible;padding:22px 0}.profile-photo{width:115px;margin-bottom:15px}.profile-nav{display:none}.detail-column{padding-left:25px}.detail-column .section:first-child,.detail-column .section,.detail-column .contact{padding-block:22px}}
 </style>
 </head>
@@ -110,13 +114,14 @@
 <main id="main"><div class="wrap profile-layout" id="top">
 <aside class="profile-panel" aria-labelledby="profile-name">
 <figure class="profile-photo"><img src="profile-photo.png" alt="Portrait of Zhenghao Alex Yu" width="941" height="1672" decoding="async" fetchpriority="high"></figure>
-<h1 class="profile-name" id="profile-name">Zhenghao Alex Yu</h1>
-<ul class="profile-details" aria-label="Profile details">
-<li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.2" fill="currentColor"/></svg><span data-i18n="location">Hong Kong</span></li>
-<li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 9 9-5 9 5M5 10v7m4-7v7m6-7v7m4-7v7M3 20h18M2 8h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span>HKUST</span></li>
-<li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><a href="mailto:alexyuzhenghao@gmail.com">Email</a></li>
-<li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.3a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.8c.85 0 1.71.11 2.51.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.86v2.77c0 .27.18.58.69.48A10 10 0 0 0 12 2.3Z"/></svg><a href="https://github.com/zhenghaoalexyu" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile: zhenghaoalexyu">GitHub</a></li>
-</ul>
+<h1 class="profile-name" id="profile-name"><span>Zhenghao</span><span>Alex</span><span>Yu</span></h1>
+<p class="profile-intro">Undergraduate student interested in mathematics and economics.</p>
+<div class="profile-facts" aria-label="Profile details">
+<div class="fact-card"><span class="fact-label">Location</span><span class="fact-value" data-i18n="location">Hong Kong</span></div>
+<div class="fact-card"><span class="fact-label">University</span><span class="fact-value">HKUST</span></div>
+<a class="fact-card" href="mailto:alexyuzhenghao@gmail.com" aria-label="Email Zhenghao Alex Yu"><span class="fact-label">Contact</span><span class="fact-value">Email</span></a>
+<a class="fact-card" href="https://github.com/zhenghaoalexyu" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile: zhenghaoalexyu"><span class="fact-label">Profile</span><span class="fact-value">GitHub</span></a>
+</div>
 </aside>
 <div class="detail-column">
 <section class="section section-grid" id="about" aria-labelledby="about-heading"><div><p class="eyebrow section-label"><span class="section-number">01</span><span data-i18n="aboutLabel">A little context</span></p><h2 id="about-heading" data-i18n="aboutHeading">About me.</h2></div><div>
