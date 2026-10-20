@@ -164,6 +164,70 @@ a.fact-card .fact-value::after{content:" ↗";color:var(--green)}
   .course-row{grid-template-columns:84px minmax(0,1fr) 32px}
   .course-code,.course-name,.course-result{grid-column:auto;grid-row:auto}
 }
+/* Compact profile rail; contacts share one panel rather than separate cards. */
+.profile-layout{grid-template-columns:224px minmax(0,1fr);gap:32px}
+.profile-panel{position:sticky;top:102px;max-height:calc(100svh - 118px);padding:22px 0 18px;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-gutter:stable;overscroll-behavior:contain}
+.profile-photo{width:164px;margin:0 0 18px;aspect-ratio:4/5;box-shadow:none;border-radius:3px}
+.profile-name{font-size:42px;line-height:1;letter-spacing:-1.5px}
+.profile-intro{max-width:215px;margin-top:12px;font-size:12.5px;line-height:1.65}
+.profile-facts{display:grid;grid-template-columns:1fr;gap:0;margin-top:20px;max-width:none;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.profile-detail{display:flex;align-items:baseline;justify-content:space-between;gap:12px;min-width:0;padding:8px 1px;font-size:12px;line-height:1.5}
+.profile-detail+.profile-detail{border-top:1px solid var(--line)}
+.profile-detail-label{flex-shrink:0;font-size:10px;color:var(--muted)}
+.profile-detail-value{min-width:0;text-align:right;overflow-wrap:anywhere}
+a.profile-detail:hover .profile-detail-value{color:var(--green);text-decoration:underline;text-underline-offset:3px}
+.profile-detail-arrow{margin-left:3px;color:var(--green);font-size:11px}
+.profile-contacts{margin-top:18px;padding:13px 12px 4px;border:1px solid var(--line);border-radius:3px;background:var(--tint)}
+.profile-contact-heading{font:400 18px/1.25 var(--serif);letter-spacing:0;margin:0 0 7px}
+html[lang^="zh"] .profile-contact-heading{font-family:var(--zh-serif)}
+.profile-contact-row{display:grid;grid-template-columns:47px minmax(0,1fr);align-items:baseline;gap:7px;min-width:0;padding:10px 0;font-size:12px;line-height:1.5}
+.profile-contact-row+.profile-contact-row{border-top:1px solid var(--line)}
+.profile-contact-label{color:var(--muted);font-size:10px}
+.profile-contact-value{min-width:0;overflow-wrap:anywhere;user-select:text;-webkit-user-select:text}
+a.profile-contact-row:hover .profile-contact-value{color:var(--green);text-decoration:underline;text-underline-offset:3px}
+a.profile-contact-row:focus-visible{outline-offset:2px}
+.detail-column{padding-left:36px}
+@media screen and (min-width:761px) and (max-height:860px){
+  .profile-panel{padding-top:14px}
+  .profile-photo{width:128px;margin-bottom:14px}
+  .profile-name{font-size:37px}
+  .profile-intro{margin-top:9px;font-size:12px}
+  .profile-facts{margin-top:15px}
+  .profile-detail{padding-block:6px}
+  .profile-contacts{margin-top:14px;padding-top:10px}
+  .profile-contact-row{padding-block:8px}
+}
+@media screen and (min-width:761px) and (max-width:960px){
+  .profile-layout{grid-template-columns:210px minmax(0,1fr);gap:24px}
+  .detail-column{padding-left:24px}
+}
+@media screen and (max-width:760px){
+  .profile-layout{display:block}
+  .profile-panel{position:static;max-height:none;padding:28px 0;overflow:visible;scrollbar-gutter:auto;border-bottom:1px solid var(--line)}
+  .profile-identity{display:grid;grid-template-columns:112px minmax(0,1fr);gap:10px 20px;align-items:start}
+  .profile-photo{grid-column:1;grid-row:1 / 3;width:112px;margin:0}
+  .profile-name{grid-column:2;grid-row:1;font-size:32px;line-height:1;letter-spacing:-1px}
+  .profile-intro{grid-column:2;grid-row:2;max-width:340px;margin:0;font-size:12px}
+  .profile-facts{margin-top:22px}
+  .profile-contacts{margin-top:16px;padding:14px 14px 5px}
+  .profile-contact-row{grid-template-columns:65px minmax(0,1fr);font-size:13px}
+  .profile-contact-label{font-size:11px}
+  .detail-column{padding-left:0;border-left:0}
+}
+@media screen and (max-width:380px){
+  .profile-identity{grid-template-columns:92px minmax(0,1fr);column-gap:16px}
+  .profile-photo{width:92px}
+  .profile-name{font-size:29px}
+}
+@media print{
+  .profile-layout{display:grid;grid-template-columns:190px minmax(0,1fr);gap:24px}
+  .profile-panel{position:static;max-height:none;padding:22px 0;overflow:visible;scrollbar-gutter:auto}
+  .profile-identity{display:block}
+  .profile-photo{width:115px;margin-bottom:15px}
+  .profile-name{font-size:34px}
+  .profile-intro{margin-top:12px}
+  .detail-column{padding-left:25px}
+}
 </style>
 </head>
 <body>
@@ -176,28 +240,21 @@ a.fact-card .fact-value::after{content:" ↗";color:var(--green)}
 </div></header>
 <main id="main"><div class="wrap profile-layout" id="top">
 <aside class="profile-panel" aria-labelledby="profile-name">
+<div class="profile-identity">
 <figure class="profile-photo"><img src="profile-photo.png" alt="Portrait of Zhenghao Alex Yu" width="941" height="1672" decoding="async" fetchpriority="high"></figure>
 <h1 class="profile-name" id="profile-name"><span class="profile-name-en"><span>Zhenghao</span><span>Alex</span><span>Yu</span></span><span class="profile-name-zh">于正浩</span></h1>
 <p class="profile-intro" data-i18n="profileIntro">Undergraduate student with interests in mathematics and economics</p>
-<div class="profile-facts" aria-label="Profile details">
-<div class="fact-card"><span class="fact-label" data-i18n="factLocation">Location</span><span class="fact-value" data-i18n="location">Hong Kong</span></div>
-<div class="fact-card"><span class="fact-label" data-i18n="factUniversity">University</span><span class="fact-value">HKUST</span></div>
-<a class="fact-card" href="mailto:alexzjy95@gmail.com" aria-label="Email Zhenghao Alex Yu"><span class="fact-label" data-i18n="factContact">Contact</span><span class="fact-value">Email</span></a>
-<a class="fact-card" href="https://github.com/zhenghaoalexyu" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile: zhenghaoalexyu"><span class="fact-label" data-i18n="factProfile">Profile</span><span class="fact-value">GitHub</span></a>
-<div class="fact-card" style="grid-column: 1 / -1;">
-  <span class="fact-label">WeChat</span>
-  <span class="fact-value">KeonAlexander95</span>
 </div>
-
-<a class="fact-card"
-   style="grid-column: 1 / -1;"
-   href="https://www.instagram.com/keonalex95/"
-   target="_blank"
-   rel="noopener noreferrer"
-   aria-label="Instagram: keonalex95">
-  <span class="fact-label">Instagram</span>
-  <span class="fact-value">@keonalex95</span>
-</a>
+<div class="profile-facts" aria-label="Profile details">
+  <div class="profile-detail"><span class="profile-detail-label" data-i18n="factLocation">Location</span><span class="profile-detail-value" data-i18n="location">Hong Kong</span></div>
+  <div class="profile-detail"><span class="profile-detail-label" data-i18n="factUniversity">University</span><span class="profile-detail-value">HKUST</span></div>
+  <a class="profile-detail" href="https://github.com/zhenghaoalexyu" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile: zhenghaoalexyu"><span class="profile-detail-label">GitHub</span><span class="profile-detail-value">zhenghaoalexyu<span class="profile-detail-arrow" aria-hidden="true">↗</span></span></a>
+</div>
+<div class="profile-contacts" role="group" aria-labelledby="profile-contact-heading">
+  <h2 class="profile-contact-heading" id="profile-contact-heading" data-i18n="profileContactHeading">Contact</h2>
+  <a class="profile-contact-row" href="mailto:alexzjy95@gmail.com"><span class="profile-contact-label" data-i18n="profileEmailLabel">Email</span><span class="profile-contact-value">alexzjy95@gmail.com</span></a>
+  <div class="profile-contact-row"><span class="profile-contact-label" data-i18n="profileWechatLabel">WeChat</span><span class="profile-contact-value">KeonAlexander95</span></div>
+  <a class="profile-contact-row" href="https://www.instagram.com/keonalex95/" target="_blank" rel="noopener noreferrer" aria-label="Instagram: keonalex95"><span class="profile-contact-label">Instagram</span><span class="profile-contact-value">@keonalex95</span></a>
 </div>
 </aside>
 <div class="detail-column">
@@ -261,7 +318,7 @@ a.fact-card .fact-value::after{content:" ↗";color:var(--green)}
   // English is present in the HTML; the page remains usable without JavaScript.
   const translations = {
     'zh-CN': {
-      skip:'跳到正文',navLabel:'主导航',themeToggleLabel:'切换日间与夜间模式',navAbout:'关于',navLearning:'学术经历',navBeyond:'课余生活',
+      skip:'跳到正文',navLabel:'主导航',themeToggleLabel:'切换日间与夜间模式',navAbout:'关于',navLearning:'学术经历',navBeyond:'课余生活',profileContactHeading:'联系方式',profileEmailLabel:'邮箱',profileWechatLabel:'微信',
       siteName:'于正浩',profileIntro:'对数学和经济学感兴趣的本科生',factLocation:'所在地',factUniversity:'学校',factContact:'联系',factProfile:'主页',location:'香港',
       aboutHeading:'关于我',aboutLead:'Alex 对信息不对称和不完全信息下的决策感兴趣。',aboutText1:'Alex 于 2026 年秋季进入香港科技大学商学院。他目前正在加强数学与编程基础，同时修读商学院的必修课程，他希望在大二进入量化金融与数学双专业项目。',
       interestsLabel:'学术兴趣',interestEconomics:'经济学',interestMath:'数学',interestFinance:'金融',interestComputing:'编程与数据',
@@ -272,7 +329,7 @@ a.fact-card .fact-value::after{content:" ↗";color:var(--green)}
       footerLocation:'香港',lastUpdated:'更新于 2026 年 10 月',backTop:'返回顶部'
     },
     'zh-HK': {
-      skip:'跳至正文',navLabel:'主導覽',themeToggleLabel:'切換日間與夜間模式',navAbout:'關於',navLearning:'學術經歷',navBeyond:'課餘生活',
+      skip:'跳至正文',navLabel:'主導覽',themeToggleLabel:'切換日間與夜間模式',navAbout:'關於',navLearning:'學術經歷',navBeyond:'課餘生活',profileContactHeading:'聯絡方式',profileEmailLabel:'電郵',profileWechatLabel:'微信',
       siteName:'于正浩',profileIntro:'對數學和經濟學感興趣的本科生',factLocation:'所在地',factUniversity:'學校',factContact:'聯絡',factProfile:'主頁',location:'香港',
       aboutHeading:'關於我',aboutLead:'Alex 對資訊不對稱和不完全資訊下的決策感興趣。',aboutText1:'Alex 於 2026 年秋季進入香港科技大學商學院。他目前正在加強數學與編程基礎，同時修讀商學院的必修課程，他希望在大二進入量化金融與數學雙主修課程。',
       interestsLabel:'學術興趣',interestEconomics:'經濟學',interestMath:'數學',interestFinance:'金融',interestComputing:'編程與數據',
