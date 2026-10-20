@@ -132,6 +132,38 @@ a.fact-card .fact-value::after{content:" ↗";color:var(--green)}
 @media(max-width:760px){.header-tools{gap:1px}.theme-toggle{width:36px;height:36px;margin-left:0}}
 @media(max-width:420px){.term-summary-main{display:grid;gap:2px}.academic-card{padding:12px}.course-row{grid-template-columns:1fr;gap:3px}.course-name{font-size:12.5px;line-height:1.55}}
 @media print{.profile-layout{display:grid;grid-template-columns:190px 1fr;gap:30px}.profile-panel{position:static;max-height:none;overflow:visible;padding:22px 0}.profile-photo{width:115px;margin-bottom:15px}.profile-nav{display:none}.detail-column{padding-left:25px}.detail-column .section:first-child,.detail-column .section,.detail-column .contact{padding-block:22px}}
+/* Results column: regular text for grades; a quiet outlined T for transfers. */
+.academic-card{grid-template-columns:minmax(160px,.7fr) minmax(0,1.6fr)}
+.course-list,.academic-card-header{min-width:0}
+.course-row{grid-template-columns:84px minmax(0,1fr) 32px;gap:12px}
+.course-code{white-space:nowrap}
+.course-name{min-width:0;overflow-wrap:break-word}
+.course-result{justify-self:end;min-width:28px;text-align:center;white-space:nowrap;font:600 12px/1.6 var(--mono);color:var(--green)}
+.course-result.is-transfer{min-width:24px;border:1px solid var(--line);border-radius:3px;background:var(--tint);color:var(--muted);font-weight:400;font-size:11px}
+.course-result.is-pending{font-weight:400;color:var(--muted)}
+.course-legend{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;margin-top:15px;color:var(--muted);font-size:11px;line-height:1.7}
+.course-legend-item{display:inline-flex;gap:7px;align-items:center}
+.course-legend .course-result{display:inline-block}
+/* Collapse each school header above its courses before the columns get tight. */
+@media(max-width:1100px){
+  .academic-card{display:block}
+  .academic-card-header{padding:0 0 11px}
+  .academic-card h3{max-width:calc(100% - 52px);overflow-wrap:break-word}
+  .course-list{padding:7px 0 0;border-top:1px solid var(--line);border-left:0}
+}
+/* On phones, keep the result at the right and give names their own full row. */
+@media(max-width:760px){
+  .course-row{grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 0}
+  .course-code{grid-column:1;grid-row:1;font-size:11px}
+  .course-result{grid-column:2;grid-row:1}
+  .course-name{grid-column:1 / -1;grid-row:2;font-size:13px;line-height:1.55}
+  .course-legend{gap:7px 16px}
+}
+@media print{
+  .academic-card{display:block}
+  .course-row{grid-template-columns:84px minmax(0,1fr) 32px}
+  .course-code,.course-name,.course-result{grid-column:auto;grid-row:auto}
+}
 </style>
 </head>
 <body>
@@ -166,14 +198,40 @@ a.fact-card .fact-value::after{content:" ↗";color:var(--green)}
 </div></section>
 <section class="section" id="projects" aria-labelledby="learning-heading"><div class="section-top"><div><p class="eyebrow section-label"><span class="section-number">02</span></p><h2 id="learning-heading" data-i18n="learningHeading">Academic Experience</h2></div></div>
 <details class="term-block">
-<summary class="term-summary"><span class="term-summary-main"><span class="term-title" data-i18n="fall2026">Fall 2026</span><span class="term-meta" data-i18n="termMeta">18 credits</span></span><span class="term-toggle" aria-hidden="true"></span></summary>
+<summary class="term-summary"><span class="term-summary-main"><span class="term-title" data-i18n="fall2026">Fall 2026</span><span class="term-meta" data-i18n="termMeta">18 enrolled credits</span></span><span class="term-toggle" aria-hidden="true"></span></summary>
 <div class="term-content"><div class="academic-grid">
-<article class="academic-card"><div class="academic-card-header"><h3 data-i18n="schoolScience">School of Science</h3><span class="school-mark">SSCI</span></div><ul class="course-list"><li class="course-row"><span class="course-code">MATH 1014</span><span class="course-name" data-i18n="courseMathName">Calculus II</span></li></ul></article>
-<article class="academic-card"><div class="academic-card-header"><h3 data-i18n="schoolEngineering">School of Engineering</h3><span class="school-mark">SENG</span></div><ul class="course-list"><li class="course-row"><span class="course-code">COMP 2711H</span><span class="course-name" data-i18n="courseCompName">Honors Discrete Mathematical Tools for Computer Science</span></li></ul></article>
-<article class="academic-card"><div class="academic-card-header"><h3 data-i18n="schoolBusiness">School of Business and Management</h3><span class="school-mark">SBM</span></div><ul class="course-list"><li class="course-row"><span class="course-code">ACCT 2010</span><span class="course-name" data-i18n="courseAcctName">Principles of Accounting I</span></li><li class="course-row"><span class="course-code">ISOM 2020</span><span class="course-name" data-i18n="courseCodeName">Coding for Business</span></li></ul></article>
+<article class="academic-card">
+  <div class="academic-card-header"><h3 data-i18n="schoolScience">School of Science</h3><span class="school-mark">SSCI</span></div>
+  <ul class="course-list">
+    <li class="course-row"><span class="course-code">MATH 1013</span><span class="course-name" data-i18n="courseCalculusOneName">Calculus I</span><span class="course-result is-transfer" aria-label="Transfer credit" data-i18n-aria="transferCreditLabel">T</span></li>
+    <!-- To publish a grade, replace the dash with A+/A/etc., remove is-pending,
+         and remove the aria-label and data-i18n-aria attributes on that result. -->
+    <li class="course-row"><span class="course-code">MATH 1014</span><span class="course-name" data-i18n="courseMathName">Calculus II</span><span class="course-result is-pending" aria-label="Grade pending" data-i18n-aria="gradePendingLabel">—</span></li>
+  </ul>
+</article>
+<article class="academic-card">
+  <div class="academic-card-header"><h3 data-i18n="schoolEngineering">School of Engineering</h3><span class="school-mark">SENG</span></div>
+  <ul class="course-list">
+    <li class="course-row"><span class="course-code">COMP 2711H</span><span class="course-name" data-i18n="courseCompName">Honors Discrete Mathematical Tools for Computer Science</span><span class="course-result is-pending" aria-label="Grade pending" data-i18n-aria="gradePendingLabel">—</span></li>
+  </ul>
+</article>
+<article class="academic-card">
+  <div class="academic-card-header"><h3 data-i18n="schoolBusiness">School of Business and Management</h3><span class="school-mark">SBM</span></div>
+  <ul class="course-list">
+    <li class="course-row"><span class="course-code">ACCT 2010</span><span class="course-name" data-i18n="courseAcctName">Principles of Accounting I</span><span class="course-result is-pending" aria-label="Grade pending" data-i18n-aria="gradePendingLabel">—</span></li>
+    <li class="course-row"><span class="course-code">ECON 2113</span><span class="course-name" data-i18n="courseMicroName">Microeconomics</span><span class="course-result is-transfer" aria-label="Transfer credit" data-i18n-aria="transferCreditLabel">T</span></li>
+    <li class="course-row"><span class="course-code">ECON 2123</span><span class="course-name" data-i18n="courseMacroName">Macroeconomics</span><span class="course-result is-transfer" aria-label="Transfer credit" data-i18n-aria="transferCreditLabel">T</span></li>
+    <li class="course-row"><span class="course-code">ISOM 2020</span><span class="course-name" data-i18n="courseCodeName">Coding for Business</span><span class="course-result is-pending" aria-label="Grade pending" data-i18n-aria="gradePendingLabel">—</span></li>
+    <li class="course-row"><span class="course-code">ISOM 2500</span><span class="course-name" data-i18n="courseStatisticsName">Business Statistics</span><span class="course-result is-transfer" aria-label="Transfer credit" data-i18n-aria="transferCreditLabel">T</span></li>
+  </ul>
+</article>
 </div></div>
 </details>
-<p class="coursework-note" data-i18n="courseworkNote">* Only selected major-related coursework is listed.</p>
+<div class="course-legend">
+  <span class="course-legend-item"><span class="course-result is-transfer" aria-hidden="true">T</span><span data-i18n="transferLegend">Transfer credit</span></span>
+  <span class="course-legend-item"><span class="course-result is-pending" aria-hidden="true">—</span><span data-i18n="pendingLegend">Grade pending</span></span>
+</div>
+<p class="coursework-note" data-i18n="courseworkNote">* Selected major-related courses only. Transfer credits are included for reference, not as courses taken this term.</p>
 <div class="notes-block"><div class="notes-heading"><h3 data-i18n="notesHeading">Lecture Notes</h3><span class="notes-count" data-i18n="notesCount"></span></div><article class="note-card"><div><p class="note-title" data-i18n="noteTitle">AP Microeconomics Notebook</p><p class="note-description" data-i18n="noteDescription">Self-study notes designed to help you earn a perfect score in AP Microeconomics.</p><p class="note-meta" data-i18n="noteMeta">32 pages · December 2025 · LaTeX</p></div><div class="note-actions"><a class="note-action" href="ap-microeconomics-notebook.pdf" target="_blank" rel="noopener"><span data-i18n="viewPdf">View PDF</span><span aria-hidden="true">↗</span></a></div></article></div>
 </section>
 <section class="section section-grid" id="beyond" aria-labelledby="beyond-heading"><div><p class="eyebrow section-label"><span class="section-number">03</span></p><h2 id="beyond-heading" data-i18n="beyondHeading">Beyond academics</h2></div><div class="beyond-items">
@@ -194,7 +252,7 @@ a.fact-card .fact-value::after{content:" ↗";color:var(--green)}
       aboutHeading:'关于我',aboutLead:'Alex 对信息不对称和不完全信息下的决策感兴趣。',aboutText1:'Alex 于 2026 年秋季进入香港科技大学商学院。他目前正在加强数学与编程基础，同时修读商学院的必修课程，他希望在大二进入量化金融与数学双专业项目。',
       interestsLabel:'学术兴趣',interestEconomics:'经济学',interestMath:'数学',interestFinance:'金融',interestComputing:'编程与数据',
       educationDate:'2026 年至今',educationName:'香港科技大学',educationDetail:'工商管理学院（SBM）· 本科一年级',educationPlan:'意向方向：量化金融 + 数学双专业',schoolDate:'2019–2025',schoolName:'青岛中学',schoolDetailSenior:'2021–2025 · AP 课程项目（国际部）',schoolDetailJunior:'2019–2021 · 初中课程项目',
-      learningHeading:'学术经历',fall2026:'2026 秋季学期',termMeta:'18学分',schoolScience:'理学院',schoolEngineering:'工学院',schoolBusiness:'工商管理学院',courseMathName:'微积分 II',courseCompName:'计算机科学荣誉离散数学工具',courseCodeName:'商业编程',courseAcctName:'会计学原理 I',courseworkNote:'* 仅列出与专业方向相关的部分课程。',
+      learningHeading:'学术经历',fall2026:'2026 秋季学期',termMeta:'本学期修读 18 学分',schoolScience:'理学院',schoolEngineering:'工学院',schoolBusiness:'工商管理学院',courseMathName:'微积分 II',courseCompName:'计算机科学荣誉离散数学工具',courseCodeName:'商业编程',courseAcctName:'会计学原理 I',courseCalculusOneName:'微积分 I',courseMicroName:'微观经济学',courseMacroName:'宏观经济学',courseStatisticsName:'商业统计学',transferLegend:'转学分',pendingLegend:'尚未出分',transferCreditLabel:'转学分',gradePendingLabel:'尚未出分',courseworkNote:'* 仅列部分专业相关课程；转学分列于此供参考，不代表本学期修读。',
       notesHeading:'课程笔记',noteTitle:'AP 微观经济学笔记',noteDescription:'帮助你在 AP 微观经济学中取得满分的自学笔记。',noteMeta:'32 页 · 2025 年 12 月 · LaTeX',viewPdf:'查看 PDF',
       beyondHeading:'学业之外',musicTitle:'音乐',musicText:'Alex 演奏单簧管，也喜欢管弦乐。他最喜欢的曲子是《第二圆舞曲》和《加勒比海盗》（两首都曾在青岛中学演奏过）。',tennisTitle:'网球',tennisText:'学习之余，Alex 喜欢去球场打网球，也希望在大学生活中继续保持这份兴趣。',pokerTitle:'扑克',pokerText:'Alex 喜欢玩德州扑克和24点，目前他正在牌桌上慢慢积累经验。',
       footerLocation:'香港',lastUpdated:'更新于 2026 年 10 月',backTop:'返回顶部'
@@ -205,7 +263,7 @@ a.fact-card .fact-value::after{content:" ↗";color:var(--green)}
       aboutHeading:'關於我',aboutLead:'Alex 對資訊不對稱和不完全資訊下的決策感興趣。',aboutText1:'Alex 於 2026 年秋季進入香港科技大學商學院。他目前正在加強數學與編程基礎，同時修讀商學院的必修課程，他希望在大二進入量化金融與數學雙主修課程。',
       interestsLabel:'學術興趣',interestEconomics:'經濟學',interestMath:'數學',interestFinance:'金融',interestComputing:'編程與數據',
       educationDate:'2026 年至今',educationName:'香港科技大學',educationDetail:'工商管理學院（SBM）· 本科一年級',educationPlan:'意向方向：量化金融 + 數學雙主修',schoolDate:'2019–2025',schoolName:'青島中學',schoolDetailSenior:'2021–2025 · AP 課程項目（國際部）',schoolDetailJunior:'2019–2021 · 初中課程項目',
-      learningHeading:'學術經歷',fall2026:'2026 秋季學期',termMeta:'18學分',schoolScience:'理學院',schoolEngineering:'工學院',schoolBusiness:'工商管理學院',courseMathName:'微積分 II',courseCompName:'計算機科學榮譽離散數學工具',courseCodeName:'商業編程',courseAcctName:'會計學原理 I',courseworkNote:'* 僅列出與專業方向相關的部分課程。',
+      learningHeading:'學術經歷',fall2026:'2026 秋季學期',termMeta:'本學期修讀 18 學分',schoolScience:'理學院',schoolEngineering:'工學院',schoolBusiness:'工商管理學院',courseMathName:'微積分 II',courseCompName:'計算機科學榮譽離散數學工具',courseCodeName:'商業編程',courseAcctName:'會計學原理 I',courseCalculusOneName:'微積分 I',courseMicroName:'微觀經濟學',courseMacroName:'宏觀經濟學',courseStatisticsName:'商業統計學',transferLegend:'轉學分',pendingLegend:'尚未出分',transferCreditLabel:'轉學分',gradePendingLabel:'尚未出分',courseworkNote:'* 僅列部分專業相關課程；轉學分列於此供參考，不代表本學期修讀。',
       notesHeading:'課程筆記',noteTitle:'AP 微觀經濟學筆記',noteDescription:'幫助你在 AP 微觀經濟學中取得滿分的自學筆記。',noteMeta:'32 頁 · 2025 年 12 月 · LaTeX',viewPdf:'查看 PDF',
       beyondHeading:'學業之外',musicTitle:'音樂',musicText:'Alex 演奏單簧管，也喜歡管弦樂。他最喜歡的曲子是《第二圓舞曲》和《加勒比海盜》（兩首都曾在青島中學演奏過）。',tennisTitle:'網球',tennisText:'學習之餘，Alex 喜歡去球場打網球，也希望在大學生活中繼續保持這份興趣。',pokerTitle:'撲克',pokerText:'Alex 喜歡玩德州撲克和24點，目前他正在牌桌上慢慢累積經驗。',
       footerLocation:'香港',lastUpdated:'更新於 2026 年 10 月',backTop:'返回頁首'
