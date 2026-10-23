@@ -164,7 +164,7 @@ a.fact-card .fact-value::after{content:" ↗";color:var(--green)}
   .course-row{grid-template-columns:84px minmax(0,1fr) 32px}
   .course-code,.course-name,.course-result{grid-column:auto;grid-row:auto}
 }
-/* Compact profile rail; contacts share one panel rather than separate cards. */
+.profile-panel{position:sticky;top:102px;max-height:none;padding:22px 0 18px;overflow:visible}
 .profile-layout{grid-template-columns:224px minmax(0,1fr);gap:32px}
 .profile-panel{position:sticky;top:102px;max-height:calc(100svh - 118px);padding:22px 0 18px;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-gutter:stable;overscroll-behavior:contain}
 .profile-photo{width:164px;margin:0 0 18px;aspect-ratio:4/5;box-shadow:none;border-radius:3px}
